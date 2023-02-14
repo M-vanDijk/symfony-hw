@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<html><body><h1 style="text-align: center;">Lucky number: {{ number }}</h1></body></html>
+<div>
+    <html><body><h1 style="text-align: center;">Lucky number: {{ number }}</h1></body></html>
+    {% for game in games %}
+        <h4>{{ game }}</h4>
+    {% endfor %}
+</div>
 {% endblock %}

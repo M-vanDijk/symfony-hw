@@ -12,7 +12,17 @@ class LuckyController extends AbstractController
     public function number(): Response
     {
         $number = random_int(0, 100);
+        $games = ['Eldenring', "Darksouls", "Rainbow six siege", "Raft", "Left 4 Dead"];
 
-        return $this->render('bezoeker/number.html.twig', ['number'=>$number]);
+        return $this->render('bezoeker/number.html.twig', ['number'=>$number,
+            'games'=>$games]);
+    }
+
+    #[Route('/lucky/number/{max}')]
+    public function maxnumber(int $max): Response
+    {
+        $number = random_int(0, $max);
+
+        return $this->render('bezoeker/mynumber.html.twig', ['number'=>$number]);
     }
 }
