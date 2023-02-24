@@ -4,12 +4,14 @@
     <div style="margin: auto;">
         <table style="border-style: solid; border-color: black; margin: auto;">
             <tr><th style="border-style: solid; border-color: black; border-width: 2px;"><h4>ID</h4></th>
-            <th style="border-style: solid; border-color: black; border-width: 2px;"><h4>Name</h4></th>
-                <th style="border-style: solid; border-color: black; border-width: 2px;"><h4>Price</h4></th></tr>
+                <th style="border-style: solid; border-color: black; border-width: 2px;"><h4>Name</h4></th>
+                <th style="border-style: solid; border-color: black; border-width: 2px;"><h4>Price</h4></th>
+                <th style="border-style: solid; border-color: black; border-width: 2px;"><h4>Category</h4></th></tr>
             {% for product in products %}
                 <tr><td style="border-style: solid; border-color: black; border-width: 2px;"><h4>{{ product.id }}</h4></td>
                     <td style="border-style: solid; border-color: black; border-width: 2px;"><h4>{{ product.name }}</h4></td>
-                    <td style="border-style: solid; border-color: black; border-width: 2px;"><h4>{{ product.price }}</h4></td></tr>
+                    <td style="border-style: solid; border-color: black; border-width: 2px;"><h4>{{ product.price }}</h4></td>
+                    <td style="border-style: solid; border-color: black; border-width: 2px;"><h4>{{ product.category.name }}</h4></td></tr>
             {% endfor %}
         </table>
     </div>

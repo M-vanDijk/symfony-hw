@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 // ...
+use App\Entity\Category;
 use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Entity\Product;
@@ -13,14 +14,23 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
 {
-    #[Route('/product/{name}/{price}', name: 'create_product')]
-    public function createProduct(ManagerRegistry $doctrine, string $name, int $price): Response
+    #[Route('/product/{name}/{price}/{categoryName}', name: 'create_product')]
+    public function createProduct(ManagerRegistry $doctrine, string $name, int $price, string $categoryName): Response
     {
         $entityManager = $doctrine->getManager();
 
         $product = new Product();
         $product->setName($name);
         $product->setPrice($price);
+
+        $category = $doctrine->getRepository(Category::class)->findOneBy(["name"=>$categoryName]);
+        $category->setName($categoryName);
+
+        $product->setCategory($category);
+
+        $entityManager = $doctrine->getManager();
+        $entityManager->persist($category);
+        $entityManager->persist($product);
 
         // tell Doctrine you want to (eventually) save the Product (no queries yet)
         $entityManager->persist($product);
